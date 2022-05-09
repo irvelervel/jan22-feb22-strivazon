@@ -1,17 +1,19 @@
-import { Component } from "react";
-import { Col, Row } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import { Component } from 'react'
+import { Col, Row } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
+
+// now this.props.addToCart is available in BookDetail!!! :D
 
 class BookDetail extends Component {
   state = {
     book: null,
-  };
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.bookSelected !== this.props.bookSelected) {
       this.setState({
         book: this.props.bookSelected,
-      });
+      })
     }
   }
 
@@ -44,7 +46,11 @@ class BookDetail extends Component {
                   <span className="font-weight-bold">Price:</span>
                   {this.state.book.price}
                 </p>
-                <Button color="primary" onClick={() => {}}>
+                <Button
+                  color="primary"
+                  onClick={() => this.props.addToCart(this.state.book)}
+                >
+                  {/* this.state.book is the currently selected book! the one I'm currently viewing */}
                   ADD TO CART
                 </Button>
               </Col>
@@ -58,8 +64,8 @@ class BookDetail extends Component {
           </Row>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default BookDetail;
+export default BookDetail

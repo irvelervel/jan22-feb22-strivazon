@@ -39,7 +39,11 @@ class BookStore extends Component {
           />
         </Col>
         <Col md={8}>
-          <BookDetail bookSelected={this.state.bookSelected} />
+          <BookDetail
+            bookSelected={this.state.bookSelected}
+            addToCart={this.props.addToCart}
+            // we're receiving this.props.addToCart from App
+          />
         </Col>
       </Row>
     )
