@@ -26,6 +26,21 @@ const App = () => {
     // and appending at the end the new book we want to insert in the cart
   }
 
+  const removeFromCart = (index) => {
+    // let's remove ONE element from the cart!
+    // the splice() method
+    // it's not safe to use splice() on cart, because it modifies the array in-place!
+    // and you're supposed to change the value of cart JUST with setCart
+    // so let's create a copy of the cart array and work on it!
+    // let cartCopy = [...cart] // <-- this is a proper copy of cart!
+    // now it's safe to use splice() on cartCopy
+    // cartCopy.splice(index, 1)
+    // setCart(cartCopy)
+    // the filter() method
+    let newCart = cart.filter((book, i) => index !== i)
+    setCart(newCart)
+  }
+
   return (
     <BrowserRouter>
       <Container>
@@ -40,7 +55,10 @@ const App = () => {
         <hr />
         <Routes>
           <Route path="/" element={<BookStore addToCart={addToCart} />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/cart"
+            element={<Cart cart={cart} removeFromCart={removeFromCart} />}
+          />
         </Routes>
       </Container>
     </BrowserRouter>
